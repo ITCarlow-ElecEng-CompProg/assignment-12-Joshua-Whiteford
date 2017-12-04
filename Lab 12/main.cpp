@@ -61,8 +61,6 @@ int main(void)
     multiplication(Num1, Num2);
     division(Num1, Num2);
 
-
-
     return 0;
 }
 
@@ -76,7 +74,7 @@ struct ComplexCartesian addition(struct ComplexCartesian n1, struct ComplexCarte
     result.Imag = n1.Imag + n2.Imag;
 
     /**< Displaying the Result */
-    cout << "Addition:" << result.Real << "j" << result.Imag << endl;
+    cout << "Addition:" << result.Real << "-" << result.Imag << "j" << endl;
     return result;
 
 }
@@ -91,7 +89,7 @@ struct ComplexCartesian subtraction(struct ComplexCartesian n1, struct ComplexCa
     result.Imag = n1.Imag - n2.Imag;
 
     /**< Displaying the Result */
-    cout << "Subtraction:" << result.Real << "j" << result.Imag << endl;
+    cout << "Subtraction:" << result.Real << "+" << result.Imag << "j" << endl;
     return result;
 
 }
@@ -116,8 +114,12 @@ struct ComplexCartesian multiplication(struct ComplexCartesian n1, struct Comple
     resultP.Mag = n1p.Mag*n2p.Mag;
     resultP.Angle = n1p.Angle+n2p.Angle;
 
+    /**< Converting Back to Cartesian form */
+    result.Real = resultP.Mag *(cos(resultP.Angle));
+    result.Imag = resultP.Mag *(sin(resultP.Angle));
+
     /**< Displaying the Result */
-    cout << "Multiplication:" << resultP.Mag << "j" << resultP.Angle << endl;
+    cout << "Multiplication:" << result.Real << "+" << result.Imag << "j" << endl;
 
     return result;
 }
@@ -140,10 +142,14 @@ struct ComplexCartesian division(struct ComplexCartesian n1, struct ComplexCarte
 
     /**< Calculations to Get the Real And Imaginary parts */
     resultP.Mag = n1p.Mag/n2p.Mag;
-    resultP.Angle = n1p.Angle-n2p.Angle;
+    resultP.Angle = (n1p.Angle-n2p.Angle);
+
+    /**< Converting Back to Cartesian form */
+    result.Real = resultP.Mag *(cos(resultP.Angle));
+    result.Imag = resultP.Mag *(sin(resultP.Angle));
 
     /**< Displaying the Result */
-    cout << "Division:" << resultP.Mag << "j" << resultP.Angle << endl;
+    cout << "Division:" << result.Real << "+" << result.Imag << "j" << endl;
 
     return result;
 }
